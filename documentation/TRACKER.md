@@ -16,6 +16,8 @@ This document tracks small deliverables for the project.
 
 ## Completed
 
+### 0.1.0
+
 - [x] Define mission statement and 10,000ft plan (4-16-26)
   - Captured in the project README as the current product direction and abstract application model.
 - [x] Define data model (4-16-26)
