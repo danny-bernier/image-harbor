@@ -1,0 +1,7 @@
+[project]
+name = "image-harbor"
+version = "0.1.0"
+requires-python = "==3.13.12"
+
+[tool.black]
+target-version = ["py313"]
