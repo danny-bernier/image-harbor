@@ -7,7 +7,6 @@ This document tracks small deliverables for the project.
 - [ ] Decide how to handle missing-file behavior
   - Since assets reference files on disk, I will eventually need to decide what happens when a file is moved externally, deleted, replaced, or becomes unreadable
   - This is a core lifecycle concern for this kind of app
-- [ ] Define SQLite Schema based on data model
 - [ ] Define python models for database
 - [ ] Build datalayer (repository) using SQLAlchemy ORM
 - [ ] Define feature sets and related work
@@ -18,6 +17,8 @@ This document tracks small deliverables for the project.
 
 ### 0.1.0
 
+- [ ] Define SQLite Schema based on data model (4-18-26)
+  - feature/db-schema
 - [x] Define mission statement and 10,000ft plan (4-16-26)
   - Captured in the project README as the current product direction and abstract application model.
 - [x] Define data model (4-16-26)
