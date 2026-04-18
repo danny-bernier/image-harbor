@@ -1,7 +1,35 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "image-harbor"
 version = "0.1.0"
+description = "Local image organization and management software."
 requires-python = "==3.13.12"
+dependencies = [
+	"platformdirs>=4.3,<5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+	"ruff>=0.11,<0.12",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.black]
+line-length = 120
 target-version = ["py313"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py313"
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

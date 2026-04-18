@@ -2,6 +2,28 @@
 
 Image organization and management software. This is an evolving document and will change frequently as updates are made.
 
+## Environment Setup
+
+This project uses a local `.venv` plus `requirements.txt` and `pyproject.toml`.
+Pipenv is not part of the workflow.
+
+```bash
+python -m venv .venv
+source .venv\Scripts\activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m pip install -e .[dev]
+```
+
+Then install the recommended VS Code extensions from [/.vscode/extensions.json](./.vscode/extensions.json).
+
+In VS Code:
+
+1. Run `Extensions: Show Recommended Extensions` from the Command Palette.
+2. Install the workspace recommendations.
+
+Formatting is handled by Black. Import sorting and basic lint checks are handled by Ruff.
+
 ## Application Goals (Mission / 10,000ft View)
 
 - Add photos once I've digitized them
@@ -24,6 +46,24 @@ Image organization and management software. This is an evolving document and wil
 - Be able to restore from a back up in the event of catastrophic data loss
 - Know which images and film rolls i have reviewed and flagged images i like/want to edit and which i have not
 - Should be focused on local and individual use for organizing my work
+- GUI for
+  - browsing images
+  - searching
+  - filtering by roll or collection
+  - sorting
+  - reviewing new images
+  - editing metadata (DB)
+  - viewing exif data (not editing)
+  - importing images
+  - importing edited versions of existing images
+  - rating images
+  - basically every feature usable via UI
+- UI MVP
+  - Library grid with filters and right-side inspector
+  - Import wizard
+  - Roll detail page
+  - Collection detail page
+  - Review queue
 
 ## How can this be achieved? WIP
 
@@ -35,7 +75,7 @@ Seems that there are some attributes images can have, but there are also attribu
 
 Images or collections could have tags, tags could just be things that describe the image or collection of images. They **could** be key value pairs but it might not be necessary?
 
-Imagine a collection of images from a single roll of film. That film may have tags like pentax, 35mm, mx, ilford hp5, bw, downtown, knoxville, street, etc... effectively the #hashtag model.
+Imagine a collection of images from a single roll of film. That film may have tags like pentax, 35mm, mx, Ilford hp5, bw, downtown, knoxville, street, etc... effectively the #hashtag model.
 Some properties should be their own proper fields like name, date_produced, description
 
 some properties are really dependent on the type of image, like digital artwork doesn't have a camera or film stock. so what if there was some abstraction over the metadata fields, like an archetype.
@@ -58,12 +98,17 @@ For example, an image will only ever belong to one import group and one film_rol
 I should stay focused on a MVP, thinking about digital art is not relevant, focus on cameras and photography analog and digital.
 
 with that in mind, i should have concrete fields for a lot of this info and just leave them null when they aren't applicable.
-Also i should make clear that the image isn't being stored in this app, instead the image exists on disk and is referenced inside the app. With the idea that when you import images i will copy it to a, "Image Harbor" folder probably in the "Pictures" directory on your system. so the binaries of the images won't be stored in the database.
+Also i should make clear that the image isn't being stored in this app, instead the image exists on disk and is referenced inside the app. With the idea that when you import images i will copy it to a, "Image Harbor" folder probably in the "Pictures" directory on your system or maybe in AppData would be better so it is less likely to be modified outside of the app, also so the binaries of the images won't be stored in the database.
 
 ## Tech Stack
 
-- python
-- sqlite
+- python (duh)
+- PySide6 for desktop UI
+- SQLAlchemy + Alembic for persistence
+- Pillow for thumbnails/previews/basic transforms
+- ExifRead or maybe piexif for metadata
+- pytest for tests (prolly wont do this tbh)
+- qdarktheme or qt-material only if later want some theming, but not early on
 
 ## Abstract Data Model
 

@@ -16,9 +16,10 @@ This document tracks small deliverables for the project.
 ## Completed
 
 ### 0.1.0
-
-- [ ] Define SQLite Schema based on data model (4-18-26)
-  - feature/db-schema
+- feature/db-schema (4-18-26)
+  - Define SQLite Schema based on data
+  - Improved environment setup and formatting
+  - Added properties
 - [x] Define mission statement and 10,000ft plan (4-16-26)
   - Captured in the project README as the current product direction and abstract application model.
 - [x] Define data model (4-16-26)
