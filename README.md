@@ -15,7 +15,7 @@ python -m pip install -r requirements.txt
 python -m pip install -e .[dev]
 ```
 
-Then install the recommended VS Code extensions from [/.vscode/extensions.json](./.vscode/extensions.json).
+Then install the recommended VS Code extensions from [/.vscode/extensions.json](.vscode/extensions.json).
 
 In VS Code:
 
@@ -110,100 +110,6 @@ Also i should make clear that the image isn't being stored in this app, instead 
 - pytest for tests (prolly wont do this tbh)
 - qdarktheme or qt-material only if later want some theming, but not early on
 
-## Abstract Data Model
+## Data Model
 
-### image_assets
-
-- id
-- name
-- description
-- format*
-- camera_make*
-- camera_model*
-- lens*
-- captured_year*
-- captured_month*
-- captured_day*
-- rating
-  - from 0 to 5 stars
-- needs_editing
-- has_been_viewed
-- last_viewed_ts
-- file_id
-- edited_from_id
-  - this is when images are edited in external applications like lightroom and re-imported as "edited" images
-  - does not apply to edit-in-place operations like rotation
-- belongs_to_roll_id
-- imported_in_group_id
-- _created_ts
-- _last_updated_ts
-
-NOTE: fields ending in * will override roll value if roll id present, if not present, if not will join to the roll transparently or be handled in service layer
-
-### files
-
-- id
-- path
-  - path to local image within harbor image store
-- thumbnail_path
-  - path to thumbnail image within harbor preview store
-  - e.g. 150x150
-- preview_path
-  - path to preview image within harbor preview store
-  - e.g. 720x720
-- mime_type
-- width
-- height
-- orientation
-  - portrait, landscape, square
-- size
-- hash
-- original_filename
-- original_size
-- original_last_modified_ts
-- original_path
-  - path to the original image that was copied when this was imported
-
-### film_rolls
-
-- id
-- name
-- description
-- camera_make
-- camera_model
-- format
-- stock
-- lens
-- captured_year
-- captured_month
-- captured_day
-- created_ts
-- last_updated_ts
-
-### user_collections
-
-- id
-- name
-- description
-- created_ts
-- last_updated_ts
-
-### user_collections_to_image_assets
-
-- user_collection_id
-- image_asset_id
-
-### import_groups
-
-- id
-- import_ts
-
-### tags
-
-- id
-- name
-
-### tag_to_image_asset
-
-- tag_id
-- image_asset_id
+![database diagram](out/documentation/diagrams/database_relationships/database_relationships.png)

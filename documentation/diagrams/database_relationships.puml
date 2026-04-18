@@ -1,0 +1,133 @@
+@startuml
+hide circle
+hide methods
+
+title Image Harbor Database Relationships
+
+entity "schema_migrations" as schema_migrations {
+  * version : INTEGER <<PK>>
+  --
+  description : TEXT
+  applied_ts : TEXT
+}
+
+entity "files" as files {
+  * id : INTEGER <<PK>>
+  --
+  path : TEXT <<UNIQUE>>
+  thumbnail_path : TEXT
+  preview_path : TEXT
+  mime_type : TEXT
+  width : INTEGER
+  height : INTEGER
+  orientation : TEXT
+  size : INTEGER
+  hash : TEXT
+  original_filename : TEXT
+  original_size : INTEGER
+  original_last_modified_ts : TEXT
+  original_path : TEXT
+  created_ts : TEXT
+  last_updated_ts : TEXT
+}
+
+entity "film_rolls" as film_rolls {
+  * id : INTEGER <<PK>>
+  --
+  name : TEXT
+  description : TEXT
+  camera_make : TEXT
+  camera_model : TEXT
+  format : TEXT
+  stock : TEXT
+  lens : TEXT
+  captured_year : INTEGER
+  captured_month : INTEGER
+  captured_day : INTEGER
+  created_ts : TEXT
+  last_updated_ts : TEXT
+}
+
+entity "import_groups" as import_groups {
+  * id : INTEGER <<PK>>
+  --
+  created_ts : TEXT
+  storage_dir : TEXT <<UNIQUE>>
+}
+
+entity "image_assets" as image_assets {
+  * id : INTEGER <<PK>>
+  --
+  name : TEXT
+  description : TEXT
+  format : TEXT
+  camera_make : TEXT
+  camera_model : TEXT
+  lens : TEXT
+  captured_year : INTEGER
+  captured_month : INTEGER
+  captured_day : INTEGER
+  rating : INTEGER
+  needs_editing : INTEGER
+  has_been_viewed : INTEGER
+  last_viewed_ts : TEXT
+  file_id : INTEGER <<FK>>
+  edited_from_id : INTEGER <<FK>>
+  belongs_to_roll_id : INTEGER <<FK>>
+  imported_in_group_id : INTEGER <<FK>>
+  created_ts : TEXT
+  last_updated_ts : TEXT
+}
+
+entity "user_collections" as user_collections {
+  * id : INTEGER <<PK>>
+  --
+  name : TEXT
+  description : TEXT
+  created_ts : TEXT
+  last_updated_ts : TEXT
+}
+
+entity "user_collections_to_image_assets" as user_collections_to_image_assets {
+  * user_collection_id : INTEGER <<PK, FK>>
+  * image_asset_id : INTEGER <<PK, FK>>
+  --
+  created_ts : TEXT
+}
+
+entity "tags" as tags {
+  * id : INTEGER <<PK>>
+  --
+  name : TEXT <<UNIQUE>>
+  created_ts : TEXT
+}
+
+entity "tag_to_image_asset" as tag_to_image_asset {
+  * tag_id : INTEGER <<PK, FK>>
+  * image_asset_id : INTEGER <<PK, FK>>
+  --
+  created_ts : TEXT
+}
+
+files ||--o{ image_assets : file_id
+film_rolls ||--o{ image_assets : belongs_to_roll_id
+import_groups ||--o{ image_assets : imported_in_group_id
+image_assets ||--o{ image_assets : edited_from_id
+
+user_collections ||--o{ user_collections_to_image_assets : user_collection_id
+image_assets ||--o{ user_collections_to_image_assets : image_asset_id
+
+tags ||--o{ tag_to_image_asset : tag_id
+image_assets ||--o{ tag_to_image_asset : image_asset_id
+
+note bottom of image_assets
+  One image asset must reference one file.
+  Roll, import group, and edited-from links are optional.
+end note
+
+note bottom of import_groups
+  Represents a system import batch.
+  storage_dir is the managed folder token.
+end note
+
+@enduml

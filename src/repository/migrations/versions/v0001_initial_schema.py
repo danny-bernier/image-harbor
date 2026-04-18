@@ -68,9 +68,8 @@ class V0001InitialSchema(Migration):
 
             CREATE TABLE IF NOT EXISTS import_groups (
                 id INTEGER PRIMARY KEY,
-                import_ts TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                source_path TEXT,
-                created_ts TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+                created_ts TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                storage_dir TEXT NOT NULL COLLATE NOCASE UNIQUE
             );
 
             CREATE TABLE IF NOT EXISTS image_assets (
