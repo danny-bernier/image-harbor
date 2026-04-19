@@ -2,29 +2,13 @@
 
 Image organization and management software. This is an evolving document and will change frequently as updates are made.
 
-## Environment Setup
+## Local Environment Setup
 
-This project uses a local `.venv` plus `requirements.txt` and `pyproject.toml`.
-Pipenv is not part of the workflow.
-
-```bash
-python -m venv .venv
-source .venv\Scripts\activate
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python -m pip install -e .[dev]
-```
-
-Then install the recommended VS Code extensions from [/.vscode/extensions.json](.vscode/extensions.json).
-
-In VS Code:
-
-1. Run `Extensions: Show Recommended Extensions` from the Command Palette.
-2. Install the workspace recommendations.
-
-Formatting is handled by Black. Import sorting and basic lint checks are handled by Ruff.
+See [local developer setup](docs/LOCAL_SETUP.md) for configuring your environment for local development.
 
 ## Application Goals (Mission / 10,000ft View)
+
+See the [feature tracker](docs/TRACKER.md) for list of features and their implementation statuses.
 
 - Add photos once I've digitized them
 - Added images are copied to the application's working image store directory (probably AppData/Image Harbor)
@@ -112,4 +96,4 @@ Also i should make clear that the image isn't being stored in this app, instead 
 
 ## Data Model
 
-![database diagram](out/documentation/diagrams/database_relationships/database_relationships.png)
+![database diagram](docs/diagrams/database_relationships.png)

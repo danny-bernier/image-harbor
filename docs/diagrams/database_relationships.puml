@@ -1,15 +1,8 @@
-@startuml
+@startuml database_relationships
 hide circle
 hide methods
 
 title Image Harbor Database Relationships
-
-entity "schema_migrations" as schema_migrations {
-  * version : INTEGER <<PK>>
-  --
-  description : TEXT
-  applied_ts : TEXT
-}
 
 entity "files" as files {
   * id : INTEGER <<PK>>
