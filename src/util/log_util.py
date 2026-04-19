@@ -1,3 +1,5 @@
+"""Logging helpers for application-wide logger configuration."""
+
 import logging
 import os
 from logging import Logger

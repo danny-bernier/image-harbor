@@ -9,5 +9,6 @@
 
 ## Documentation
 
+- Add a module docstring to every Python file.
 - Add docstrings to all public functions, methods, and classes.
 - Use the same autodocstring-style format consistently across the project.

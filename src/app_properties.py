@@ -1,3 +1,5 @@
+"""Application property and environment variable resolution."""
+
 import os
 from pathlib import Path
 from types import ModuleType

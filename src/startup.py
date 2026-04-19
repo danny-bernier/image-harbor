@@ -1,3 +1,5 @@
+"""Application startup initialization for filesystem and database state."""
+
 from alembic import command
 from alembic.config import Config
 

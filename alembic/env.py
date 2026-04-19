@@ -1,3 +1,5 @@
+"""Alembic environment configuration for Image Harbor migrations."""
+
 from __future__ import annotations
 
 from logging.config import fileConfig
