@@ -21,6 +21,16 @@ def _get_platform_dirs() -> PlatformDirs:
 
 
 def get_from_env(var_name: str, default: str = None) -> str:
+    """Get an application environment variable value.
+
+    Args:
+        var_name: The environment variable name without the application prefix.
+        default: The fallback value to return when the variable is not set.
+
+    Returns:
+        str: The environment variable value if present, otherwise the default value.
+    """
+
     return os.getenv(f"{_ENVIRONMENT_PREFIX}_{var_name}", default)
 
 

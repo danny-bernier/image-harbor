@@ -3,6 +3,7 @@
         "ms-python.python",
         "ms-python.black-formatter",
         "charliermarsh.ruff",
+        "njpwerner.autodocstring",
         "jebbs.plantuml"
     ]
 }

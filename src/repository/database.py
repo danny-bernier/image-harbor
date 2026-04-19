@@ -11,19 +11,34 @@ _DATABASE_FILENAME = "image_harbor.db"
 
 
 def get_database_path() -> Path:
-    """Return the default SQLite database path for the application."""
+    """Get the default SQLite database path for the application.
+
+    Returns:
+        Path: The filesystem path used for the application database.
+    """
 
     return APP_DATA_PATH / _DATABASE_FILENAME
 
 
 def get_database_url() -> str:
-    """Return the configured SQLAlchemy database URL."""
+    """Get the configured SQLAlchemy database URL.
+
+    Returns:
+        str: The SQLAlchemy connection URL for the application database.
+    """
 
     return f"sqlite+pysqlite:///{get_database_path().as_posix()}"
 
 
 def create_database_engine(*, echo: bool = False) -> Engine:
-    """Create an engine for the configured application database."""
+    """Create a SQLAlchemy engine for the application database.
+
+    Args:
+        echo: Whether SQLAlchemy should echo executed SQL statements.
+
+    Returns:
+        Engine: A SQLAlchemy engine configured for the application database.
+    """
 
     database_path = get_database_path()
     database_path.parent.mkdir(parents=True, exist_ok=True)

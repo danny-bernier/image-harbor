@@ -9,6 +9,15 @@ _ENVIRONMENT_LOG_TIMESTAMP_FORMAT = "IMAGE_HARBOR_LOG_TIMESTAMP_FORMAT"
 
 
 def get_logger(name: str) -> Logger:
+    """Get a configured logger for the supplied module or component name.
+
+    Args:
+        name: The logger name to retrieve.
+
+    Returns:
+        Logger: A logger configured with the application's root logging settings.
+    """
+
     root_logger = logging.getLogger()
 
     if not root_logger.handlers:
@@ -26,5 +35,11 @@ def get_logger(name: str) -> Logger:
 
 
 def is_debug_enabled() -> bool:
+    """Check whether debug logging is currently enabled.
+
+    Returns:
+        bool: True when the root logger is configured for debug output.
+    """
+
     root_logger = logging.getLogger()
     return root_logger.isEnabledFor(logging.DEBUG)
