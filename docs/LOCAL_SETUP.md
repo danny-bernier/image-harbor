@@ -64,7 +64,17 @@ python -m pre_commit run
 
 Use `pre-commit run --all-files` after first-time setup if you want to normalize the whole repo before starting work.
 
-## 6. Install Recommended VS Code Extensions
+## 6. Run Quality Checks Manually
+
+If you want to run the same Black and Ruff checks outside of the Git hook, use the quality script:
+
+```bash
+bash ./scripts/quality.sh
+```
+
+This runs the same ad-hoc quality checks that the GitHub `quality` workflow uses.
+
+## 7. Install Recommended VS Code Extensions
 
 Install the recommended workspace extensions from [/.vscode/extensions.json](.vscode/extensions.json).
 
@@ -76,7 +86,7 @@ In VS Code:
 Formatting is handled by Black. Import sorting and basic lint checks are handled by Ruff.
 GitHub also runs both checks through the quality workflow in pull requests and pushes to `main`.
 
-## 7. Initialize Or Inspect The Local Database
+## 8. Initialize Or Inspect The Local Database
 
 Common Alembic commands:
 
@@ -107,7 +117,7 @@ export IMAGE_HARBOR_APP_CACHE_PATH="$PWD/out/app/cache"
 python -m alembic upgrade head
 ```
 
-## 8. Run The App Locally
+## 9. Run The App Locally
 
 The simplest way to run the app in VS Code is through the dev runner script:
 

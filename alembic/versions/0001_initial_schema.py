@@ -64,12 +64,8 @@ def upgrade() -> None:
             nullable=False,
             server_default=sa.text("CURRENT_TIMESTAMP"),
         ),
-        sa.CheckConstraint(
-            "width IS NULL OR width > 0", name="ck_files_width_positive"
-        ),
-        sa.CheckConstraint(
-            "height IS NULL OR height > 0", name="ck_files_height_positive"
-        ),
+        sa.CheckConstraint("width IS NULL OR width > 0", name="ck_files_width_positive"),
+        sa.CheckConstraint("height IS NULL OR height > 0", name="ck_files_height_positive"),
         sa.CheckConstraint("size >= 0", name="ck_files_size_non_negative"),
         sa.CheckConstraint(
             "original_size IS NULL OR original_size >= 0",
@@ -147,12 +143,8 @@ def upgrade() -> None:
         sa.Column("captured_month", sa.Integer(), nullable=True),
         sa.Column("captured_day", sa.Integer(), nullable=True),
         sa.Column("rating", sa.Integer(), nullable=False, server_default=sa.text("0")),
-        sa.Column(
-            "needs_editing", sa.Integer(), nullable=False, server_default=sa.text("0")
-        ),
-        sa.Column(
-            "has_been_viewed", sa.Integer(), nullable=False, server_default=sa.text("0")
-        ),
+        sa.Column("needs_editing", sa.Integer(), nullable=False, server_default=sa.text("0")),
+        sa.Column("has_been_viewed", sa.Integer(), nullable=False, server_default=sa.text("0")),
         sa.Column("last_viewed_ts", sa.Text(), nullable=True),
         sa.Column("file_id", sa.Integer(), nullable=False),
         sa.Column("edited_from_id", sa.Integer(), nullable=True),
@@ -182,15 +174,9 @@ def upgrade() -> None:
             "captured_day IS NULL OR captured_day BETWEEN 1 AND 31",
             name="ck_image_assets_captured_day_valid",
         ),
-        sa.CheckConstraint(
-            "rating BETWEEN 0 AND 5", name="ck_image_assets_rating_valid"
-        ),
-        sa.CheckConstraint(
-            "needs_editing IN (0, 1)", name="ck_image_assets_needs_editing_boolean"
-        ),
-        sa.CheckConstraint(
-            "has_been_viewed IN (0, 1)", name="ck_image_assets_has_been_viewed_boolean"
-        ),
+        sa.CheckConstraint("rating BETWEEN 0 AND 5", name="ck_image_assets_rating_valid"),
+        sa.CheckConstraint("needs_editing IN (0, 1)", name="ck_image_assets_needs_editing_boolean"),
+        sa.CheckConstraint("has_been_viewed IN (0, 1)", name="ck_image_assets_has_been_viewed_boolean"),
         sa.CheckConstraint(
             "edited_from_id IS NULL OR edited_from_id <> id",
             name="ck_image_assets_edited_from_not_self",
@@ -304,25 +290,17 @@ def upgrade() -> None:
             name="fk_tag_to_image_asset_image_asset_id_image_assets",
             ondelete="CASCADE",
         ),
-        sa.PrimaryKeyConstraint(
-            "tag_id", "image_asset_id", name="pk_tag_to_image_asset"
-        ),
+        sa.PrimaryKeyConstraint("tag_id", "image_asset_id", name="pk_tag_to_image_asset"),
     )
 
     op.create_index("idx_files_hash", "files", ["hash"])
     op.create_index("idx_image_assets_file_id", "image_assets", ["file_id"])
     op.create_index("idx_image_assets_roll_id", "image_assets", ["belongs_to_roll_id"])
-    op.create_index(
-        "idx_image_assets_import_group_id", "image_assets", ["imported_in_group_id"]
-    )
-    op.create_index(
-        "idx_image_assets_edited_from_id", "image_assets", ["edited_from_id"]
-    )
+    op.create_index("idx_image_assets_import_group_id", "image_assets", ["imported_in_group_id"])
+    op.create_index("idx_image_assets_edited_from_id", "image_assets", ["edited_from_id"])
     op.create_index("idx_image_assets_rating", "image_assets", ["rating"])
     op.create_index("idx_image_assets_needs_editing", "image_assets", ["needs_editing"])
-    op.create_index(
-        "idx_image_assets_last_viewed_ts", "image_assets", ["last_viewed_ts"]
-    )
+    op.create_index("idx_image_assets_last_viewed_ts", "image_assets", ["last_viewed_ts"])
     op.create_index("idx_film_rolls_name", "film_rolls", ["name"])
     op.create_index("idx_user_collections_name", "user_collections", ["name"])
 

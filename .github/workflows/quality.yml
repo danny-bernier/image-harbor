@@ -24,8 +24,5 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -e .[dev]
 
-      - name: Check Black formatting
-        run: python -m black --check src alembic
-
-      - name: Run Ruff
-        run: python -m ruff check src alembic
+      - name: Run quality checks
+        run: bash ./scripts/quality.sh
