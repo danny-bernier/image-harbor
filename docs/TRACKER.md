@@ -120,6 +120,7 @@ Stories are intentionally small enough that multiple can be grouped into a singl
 
 ### 0.1.0
 - **feature/db-schema** (4-18-26)
+  - Enforce code formatting with hooks
   - Define SQLite Schema based on data
   - Improved environment setup, added ez dev script
   - Added properties, logging, and other general config

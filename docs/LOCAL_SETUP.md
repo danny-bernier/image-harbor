@@ -1,29 +1,82 @@
 # Local Environment Setup
 
+This guide assumes you already have the repository cloned locally and are running commands from the repository root.
+
 This project uses a local `.venv` plus `requirements.txt` and `pyproject.toml`.
 Pipenv is not part of the workflow.
 
-Alembic is used for schema versioning and SQLAlchemy is used for schema metadata and database access.
+## 1. Prerequisites
 
-```bash
-python -m venv .venv
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python -m pip install -e .[dev]
-```
-
-Activate the environment before running the install commands:
-
-- Windows PowerShell: `.venv\Scripts\Activate.ps1`
-- Windows Git Bash: `source .venv/Scripts/activate`
-- macOS/Linux: `source .venv/bin/activate`
-
-No separate Chocolatey or Homebrew Alembic package is required. Alembic and SQLAlchemy are installed via `pip` into the project's `.venv`.
+Install Python `3.13.12` before setting up the project.
 
 Optional local tools:
 
 - Windows with Chocolatey: `choco install sqlite`
 - macOS with Homebrew: `brew install sqlite`
+
+No separate Chocolatey or Homebrew Alembic package is required. Alembic and SQLAlchemy are installed through the project Python environment.
+
+## 2. Create The Virtual Environment
+
+Create the local virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+## 3. Activate The Virtual Environment
+
+Activate the environment before installing anything else:
+
+- Windows PowerShell: `.venv\Scripts\Activate.ps1`
+- Windows Git Bash: `source .venv/Scripts/activate`
+- macOS/Linux: `source .venv/bin/activate`
+
+## 4. Install Project Dependencies
+
+With the virtual environment active, install the project and developer dependencies:
+
+```bash
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python -m pip install -e .[dev]
+```
+
+## 5. Install The Git Pre-commit Hook
+
+Install the local Git hook:
+
+```bash
+python -m pre_commit install
+```
+
+This repo uses `pre-commit` to run local quality checks before each commit.
+Right now those checks run Ruff first and then Black.
+
+If either tool changes files, the commit stops so you can review the edits, stage them, and commit again.
+
+Useful manual commands:
+
+```bash
+python -m pre_commit run --all-files
+python -m pre_commit run
+```
+
+Use `pre-commit run --all-files` after first-time setup if you want to normalize the whole repo before starting work.
+
+## 6. Install Recommended VS Code Extensions
+
+Install the recommended workspace extensions from [/.vscode/extensions.json](.vscode/extensions.json).
+
+In VS Code:
+
+1. Run `Extensions: Show Recommended Extensions` from the Command Palette.
+2. Install the workspace recommendations.
+
+Formatting is handled by Black. Import sorting and basic lint checks are handled by Ruff.
+GitHub also runs both checks through the quality workflow in pull requests and pushes to `main`.
+
+## 7. Initialize Or Inspect The Local Database
 
 Common Alembic commands:
 
@@ -33,7 +86,8 @@ python -m alembic current
 python -m alembic revision --autogenerate -m "describe schema change"
 ```
 
-By default, Alembic uses the application SQLite path under the app data directory resolved by `src/app_properties.py`. For local development, you can point the app and Alembic at repo-local directories by setting the prefixed app path environment variables before running commands.
+By default, Alembic uses the application SQLite path under the app data directory resolved by `src/app_properties.py`.
+For local development, you can point the app and Alembic at repo-local directories by setting the prefixed app path environment variables before running commands.
 
 Windows PowerShell:
 
@@ -53,7 +107,7 @@ export IMAGE_HARBOR_APP_CACHE_PATH="$PWD/out/app/cache"
 python -m alembic upgrade head
 ```
 
-## Running The App Locally
+## 8. Run The App Locally
 
 The simplest way to run the app in VS Code is through the dev runner script:
 
@@ -83,12 +137,3 @@ out/app/data/image_harbor.db
 ```
 
 You can still override `IMAGE_HARBOR_APP_DATA_PATH`, `IMAGE_HARBOR_APP_CONFIG_PATH`, and `IMAGE_HARBOR_APP_CACHE_PATH` before running the script if you want to target different locations.
-
-Then install the recommended VS Code extensions from [/.vscode/extensions.json](.vscode/extensions.json).
-
-In VS Code:
-
-1. Run `Extensions: Show Recommended Extensions` from the Command Palette.
-2. Install the workspace recommendations.
-
-Formatting is handled by Black. Import sorting and basic lint checks are handled by Ruff.
