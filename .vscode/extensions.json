@@ -1,6 +1,10 @@
 {
-  "recommendations": [
-    "ms-python.python",
-    "ms-python.black-formatter"
-  ]
+    "recommendations": [
+        "ms-python.python",
+        "ms-python.black-formatter",
+        "charliermarsh.ruff",
+        "njpwerner.autodocstring",
+        "jebbs.plantuml",
+        "github.vscode-github-actions"
+    ]
 }
