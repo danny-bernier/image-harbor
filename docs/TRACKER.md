@@ -106,7 +106,7 @@ Stories are intentionally small enough that multiple can be grouped into a singl
 - Add repository tests against disposable SQLite databases
 - Add import workflow tests
   - File copying, metadata extraction, and duplicate handling need coverage.
-- Add a simple CI workflow for lint and tests
+- Add a simple CI workflow for tests
 
 ## Completed
 
@@ -116,6 +116,7 @@ Stories are intentionally small enough that multiple can be grouped into a singl
   - Add structured startup error handling and user-facing failure logging
   - Skip Alembic work when the database is already at the requested revision
 - **feature/db-schema** (4-18-26)
+  - Add a simple CI workflow for lint
   - Enforce code formatting with hooks
   - Define SQLite Schema based on data
   - Improved environment setup, added ez dev script
