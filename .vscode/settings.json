@@ -2,6 +2,10 @@
     "python.terminal.activateEnvironment": true,
     "editor.formatOnSave": true,
     "editor.insertSpaces": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.ruff": true,
+        "source.organizeImports.ruff": true
+    },
     "editor.tabSize": 4,
     "editor.detectIndentation": false,
     "files.insertFinalNewline": true,

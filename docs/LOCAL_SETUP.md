@@ -33,23 +33,23 @@ python -m alembic current
 python -m alembic revision --autogenerate -m "describe schema change"
 ```
 
-By default, Alembic uses the application SQLite path under the app data directory resolved by `src/app_properties.py`. For local development, you can point the app and Alembic at repo-local directories by setting the app path environment variables before running commands.
+By default, Alembic uses the application SQLite path under the app data directory resolved by `src/app_properties.py`. For local development, you can point the app and Alembic at repo-local directories by setting the prefixed app path environment variables before running commands.
 
 Windows PowerShell:
 
 ```powershell
-$env:APP_DATA_PATH = "$PWD/out/app/data"
-$env:APP_CONFIG_PATH = "$PWD/out/app/config"
-$env:APP_CACHE_PATH = "$PWD/out/app/cache"
+$env:IMAGE_HARBOR_APP_DATA_PATH = "$PWD/out/app/data"
+$env:IMAGE_HARBOR_APP_CONFIG_PATH = "$PWD/out/app/config"
+$env:IMAGE_HARBOR_APP_CACHE_PATH = "$PWD/out/app/cache"
 python -m alembic upgrade head
 ```
 
 macOS/Linux shell:
 
 ```bash
-export APP_DATA_PATH="$PWD/out/app/data"
-export APP_CONFIG_PATH="$PWD/out/app/config"
-export APP_CACHE_PATH="$PWD/out/app/cache"
+export IMAGE_HARBOR_APP_DATA_PATH="$PWD/out/app/data"
+export IMAGE_HARBOR_APP_CONFIG_PATH="$PWD/out/app/config"
+export IMAGE_HARBOR_APP_CACHE_PATH="$PWD/out/app/cache"
 python -m alembic upgrade head
 ```
 
@@ -76,13 +76,13 @@ out/app/config
 out/app/cache
 ```
 
-Because the database path is derived from `APP_DATA_PATH`, the default dev database created by the script will be:
+Because the database path is derived from `IMAGE_HARBOR_APP_DATA_PATH`, the default dev database created by the script will be:
 
 ```text
 out/app/data/image_harbor.db
 ```
 
-You can still override `APP_DATA_PATH`, `APP_CONFIG_PATH`, and `APP_CACHE_PATH` before running the script if you want to target different locations.
+You can still override `IMAGE_HARBOR_APP_DATA_PATH`, `IMAGE_HARBOR_APP_CONFIG_PATH`, and `IMAGE_HARBOR_APP_CACHE_PATH` before running the script if you want to target different locations.
 
 Then install the recommended VS Code extensions from [/.vscode/extensions.json](.vscode/extensions.json).
 

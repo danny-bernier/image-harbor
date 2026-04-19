@@ -86,23 +86,23 @@ python -m alembic downgrade -1
 python -m alembic revision --autogenerate -m "describe schema change"
 ```
 
-If you want to run migrations against a repo-local disposable database instead of the normal app-data database, set the app path environment variables first.
+If you want to run migrations against a repo-local disposable database instead of the normal app-data database, set the prefixed app path environment variables first.
 
 Windows PowerShell:
 
 ```powershell
-$env:APP_DATA_PATH = "$PWD/out/app/data"
-$env:APP_CONFIG_PATH = "$PWD/out/app/config"
-$env:APP_CACHE_PATH = "$PWD/out/app/cache"
+$env:IMAGE_HARBOR_APP_DATA_PATH = "$PWD/out/app/data"
+$env:IMAGE_HARBOR_APP_CONFIG_PATH = "$PWD/out/app/config"
+$env:IMAGE_HARBOR_APP_CACHE_PATH = "$PWD/out/app/cache"
 python -m alembic upgrade head
 ```
 
 macOS/Linux shell:
 
 ```bash
-export APP_DATA_PATH="$PWD/out/app/data"
-export APP_CONFIG_PATH="$PWD/out/app/config"
-export APP_CACHE_PATH="$PWD/out/app/cache"
+export IMAGE_HARBOR_APP_DATA_PATH="$PWD/out/app/data"
+export IMAGE_HARBOR_APP_CONFIG_PATH="$PWD/out/app/config"
+export IMAGE_HARBOR_APP_CACHE_PATH="$PWD/out/app/cache"
 python -m alembic upgrade head
 ```
 
