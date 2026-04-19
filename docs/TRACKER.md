@@ -7,10 +7,6 @@ This document tracks small deliverables for the project.
 This section is a working backlog of known work.
 Stories are intentionally small enough that multiple can be grouped into a single PR when it makes sense.
 
-### Foundation And App Bootstrap
-
-- Define a small application service/repository layer boundary
-
 ### Database And Repository Work
 
 - Build repository operations for image assets
@@ -116,6 +112,7 @@ Stories are intentionally small enough that multiple can be grouped into a singl
 
 ### 0.1.0
 - **feature/startup-polish** (4-18-26)
+  - Define a small application service/repository layer boundary
   - Add structured startup error handling and user-facing failure logging
   - Skip Alembic work when the database is already at the requested revision
 - **feature/db-schema** (4-18-26)

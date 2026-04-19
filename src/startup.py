@@ -6,8 +6,8 @@ from alembic.runtime.migration import MigrationContext
 from alembic.script import ScriptDirectory
 
 import app_properties
+from client.database_client import create_database_engine, get_database_path
 from model.errors import StartupError
-from repository.database import create_database_engine, get_database_path
 from util.log_util import Logger, get_logger
 
 log: Logger = get_logger(__name__)
