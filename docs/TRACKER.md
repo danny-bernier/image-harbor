@@ -9,7 +9,6 @@ Stories are intentionally small enough that multiple can be grouped into a singl
 
 ### Foundation And App Bootstrap
 
-- Skip Alembic work when the database is already at the requested revision
 - Add structured startup error handling and user-facing failure logging
 - Define a small application service/repository layer boundary
 
@@ -117,6 +116,8 @@ Stories are intentionally small enough that multiple can be grouped into a singl
 ## Completed
 
 ### 0.1.0
+- **feature/startup-polish** (4-18-26)
+  - Skip Alembic work when the database is already at the requested revision
 - **feature/db-schema** (4-18-26)
   - Enforce code formatting with hooks
   - Define SQLite Schema based on data
