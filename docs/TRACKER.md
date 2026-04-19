@@ -9,7 +9,6 @@ Stories are intentionally small enough that multiple can be grouped into a singl
 
 ### Foundation And App Bootstrap
 
-- Wire the real application entrypoint through startup initialization
 - Skip Alembic work when the database is already at the requested revision
 - Add structured startup error handling and user-facing failure logging
 - Define a small application service/repository layer boundary
@@ -22,7 +21,6 @@ Stories are intentionally small enough that multiple can be grouped into a singl
 - Build repository operations for tags
 - Add repository queries for common library views
   - Recent imports, unviewed assets, needs-editing assets, top-rated assets, and assets by roll or collection.
-- Add a migration workflow note for future schema changes
 
 ### Import Pipeline MVP
 
@@ -124,8 +122,9 @@ Stories are intentionally small enough that multiple can be grouped into a singl
   - Define SQLite Schema based on data
   - Improved environment setup, added ez dev script
   - Added properties, logging, and other general config
-  - Build data layer (repository) using SQLAlchemy ORM
-  - Define python models for database
+  - Wire the real application entrypoint through startup initialization
+  - Add a migration workflow note for future schema changes
+  - Define SQLAlchemy models for database
 - **feature/initial** (4-16-26)
   - Define mission statement and 10,000ft plan
     - Captured in the project README as the current product direction and abstract application model.
