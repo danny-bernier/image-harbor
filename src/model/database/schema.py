@@ -1,4 +1,4 @@
-"""SQLAlchemy schema metadata for Image Harbor."""
+"""SQLAlchemy database schema metadata for Image Harbor."""
 
 from sqlalchemy import (
     CheckConstraint,
