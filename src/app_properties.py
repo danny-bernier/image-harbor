@@ -4,6 +4,10 @@ from types import ModuleType
 
 from platformdirs import PlatformDirs
 
+from util.log_util import Logger, get_logger, is_debug_enabled
+
+log: Logger = get_logger(__name__)
+
 # Private constants
 _ENVIRONMENT_PREFIX: str = "IMAGE_HARBOR"
 _PLATFORM_DIRS: PlatformDirs | None = None
@@ -14,16 +18,6 @@ def _get_platform_dirs() -> PlatformDirs:
     if not _PLATFORM_DIRS:
         _PLATFORM_DIRS = PlatformDirs(APP_NAME, False)
     return _PLATFORM_DIRS
-
-
-def _print_properties():
-    print("Application properties:")
-    for name, value in sorted(globals().items()):
-        if name.startswith("_"):
-            continue
-        if isinstance(value, ModuleType) or callable(value):
-            continue
-        print(f"{name}: {value}")
 
 
 def get_from_env(var_name: str, default: str = None) -> str:
@@ -38,4 +32,11 @@ APP_CONFIG_PATH: Path = Path(get_from_env("APP_CONFIG_PATH", _get_platform_dirs(
 APP_CACHE_PATH: Path = Path(get_from_env("APP_CACHE_PATH", _get_platform_dirs().user_cache_dir))
 
 # Print application properties
-_print_properties()
+if is_debug_enabled():
+    log.debug("Application properties:")
+    for name, value in sorted(globals().items()):
+        if name.startswith("_"):
+            continue
+        if isinstance(value, ModuleType) or callable(value):
+            continue
+        log.debug(f"{name}: {value}")

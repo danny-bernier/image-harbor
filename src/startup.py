@@ -2,6 +2,10 @@ from alembic import command
 from alembic.config import Config
 
 import app_properties
+from util.log_util import Logger, get_logger
+
+log: Logger = get_logger(__name__)
+
 
 _ALEMBIC_INI_PATH = app_properties.REPO_ROOT / "alembic.ini"
 _ALEMBIC_SCRIPT_PATH = app_properties.REPO_ROOT / "alembic"
@@ -21,7 +25,7 @@ def init_filesystem():
 def init_database():
     ignore_migrations = app_properties.get_from_env("IGNORE_MIGRATIONS", "0")
     if ignore_migrations.lower() in {"1", "true", "yes", "on"}:
-        print("Skipping Alembic migrations because IMAGE_HARBOR_IGNORE_MIGRATIONS is enabled.")
+        log.warning("Skipping Alembic migrations because IMAGE_HARBOR_IGNORE_MIGRATIONS is enabled.")
         return
 
     if not _ALEMBIC_INI_PATH.exists():
@@ -32,5 +36,5 @@ def init_database():
     alembic_config = Config(str(_ALEMBIC_INI_PATH))
     alembic_config.set_main_option("script_location", str(_ALEMBIC_SCRIPT_PATH))
 
-    print(f"Running Alembic migrations to revision: {target_revision}")
+    log.info(f"Running Alembic migrations to revision: {target_revision}")
     command.upgrade(alembic_config, target_revision)
