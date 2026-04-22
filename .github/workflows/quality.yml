@@ -26,3 +26,6 @@ jobs:
 
       - name: Run quality checks
         run: bash ./scripts/quality.sh
+
+      - name: Run tests
+        run: python -m pytest -q tests
