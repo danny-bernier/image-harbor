@@ -111,6 +111,8 @@ Stories are intentionally small enough that multiple can be grouped into a singl
 ## Completed
 
 ### 0.1.0
+- **feature/repository-access** (4-22-26)
+  -
 - **feature/startup-polish** (4-18-26)
   - Define a small application service/repository layer boundary
   - Add structured startup error handling and user-facing failure logging
