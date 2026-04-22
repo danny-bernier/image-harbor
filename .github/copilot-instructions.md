@@ -12,3 +12,8 @@
 - Add a module docstring to every Python file.
 - Add docstrings to all public functions, methods, and classes.
 - Use the same autodocstring-style format consistently across the project.
+
+## Package Structure
+
+- Prefer explicit `__init__.py` files in each Python package and subpackage directory.
+- `__init__.py` files may be blank except for a module docstring when no exports are needed.
