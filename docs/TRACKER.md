@@ -9,10 +9,6 @@ Stories are intentionally small enough that multiple can be grouped into a singl
 
 ### Database And Repository Work
 
-- Build repository operations for image assets
-- Build repository operations for film rolls
-- Build repository operations for user collections
-- Build repository operations for tags
 - Add repository queries for common library views
   - Recent imports, unviewed assets, needs-editing assets, top-rated assets, and assets by roll or collection.
 
@@ -111,6 +107,11 @@ Stories are intentionally small enough that multiple can be grouped into a singl
 ## Completed
 
 ### 0.1.0
+- **feature/repository-access** (4-22-26)
+  - added repository DAOs
+  - added DB models
+  - added test tooling
+  - added repo related tests
 - **feature/startup-polish** (4-18-26)
   - Define a small application service/repository layer boundary
   - Add structured startup error handling and user-facing failure logging

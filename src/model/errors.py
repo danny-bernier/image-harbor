@@ -8,16 +8,16 @@ class StartupError(RuntimeError):
     """Represent an application startup failure with structured context.
 
     Args:
-            message: The human-readable startup failure message.
-            context: Optional key/value details that add failure context.
+        message: The human-readable startup failure message.
+        context: Optional key/value details that add failure context.
     """
 
     def __init__(self, message: str, *, context: Mapping[str, Any] | None = None) -> None:
         """Initialize the startup error.
 
         Args:
-                message: The human-readable startup failure message.
-                context: Optional key/value details that add failure context.
+            message: The human-readable startup failure message.
+            context: Optional key/value details that add failure context.
         """
 
         super().__init__(message)
@@ -27,7 +27,7 @@ class StartupError(RuntimeError):
         """Render the error message with any available context.
 
         Returns:
-                str: The formatted startup error message.
+            str: The formatted startup error message.
         """
 
         message = super().__str__()
