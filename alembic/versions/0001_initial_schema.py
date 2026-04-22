@@ -18,6 +18,12 @@ depends_on = None
 
 
 def _create_last_updated_trigger(table_name: str) -> None:
+    """Create an update trigger that refreshes last_updated_ts for a table.
+
+    Args:
+        table_name: Database table name that includes id and last_updated_ts columns.
+    """
+
     op.execute(
         f"""
         CREATE TRIGGER trg_{table_name}_last_updated_ts
@@ -34,6 +40,8 @@ def _create_last_updated_trigger(table_name: str) -> None:
 
 
 def upgrade() -> None:
+    """Apply the initial database schema and indexes."""
+
     op.execute("PRAGMA foreign_keys = ON")
 
     op.create_table(
@@ -311,6 +319,8 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
+    """Revert the initial database schema and all related indexes/triggers."""
+
     op.execute("DROP TRIGGER IF EXISTS trg_user_collections_last_updated_ts")
     op.execute("DROP TRIGGER IF EXISTS trg_image_assets_last_updated_ts")
     op.execute("DROP TRIGGER IF EXISTS trg_film_rolls_last_updated_ts")

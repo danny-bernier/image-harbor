@@ -16,6 +16,12 @@ _PLATFORM_DIRS: PlatformDirs | None = None
 
 
 def _get_platform_dirs() -> PlatformDirs:
+    """Get the cached platform directory resolver.
+
+    Returns:
+        PlatformDirs: Platform-specific directory paths for the application.
+    """
+
     global _PLATFORM_DIRS
     if not _PLATFORM_DIRS:
         _PLATFORM_DIRS = PlatformDirs(APP_NAME, False)

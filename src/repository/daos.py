@@ -141,12 +141,23 @@ class FileDAO(BaseDAO[File]):
     """DAO for file rows."""
 
     def __init__(self, session: Session) -> None:
-        """Initialize the file DAO."""
+        """Initialize the file DAO.
+
+        Args:
+            session: Active SQLAlchemy session used for persistence operations.
+        """
 
         super().__init__(session, File)
 
     def get_by_path(self, path: str) -> File | None:
-        """Fetch a file row by absolute storage path."""
+        """Fetch a file row by absolute storage path.
+
+        Args:
+            path: Absolute file path stored in the files table.
+
+        Returns:
+            File | None: The matching file row, if present.
+        """
 
         return self.find_one(path=path)
 
@@ -155,7 +166,11 @@ class FilmRollDAO(BaseDAO[FilmRoll]):
     """DAO for film roll rows."""
 
     def __init__(self, session: Session) -> None:
-        """Initialize the film roll DAO."""
+        """Initialize the film roll DAO.
+
+        Args:
+            session: Active SQLAlchemy session used for persistence operations.
+        """
 
         super().__init__(session, FilmRoll)
 
@@ -164,12 +179,23 @@ class ImportGroupDAO(BaseDAO[ImportGroup]):
     """DAO for import group rows."""
 
     def __init__(self, session: Session) -> None:
-        """Initialize the import group DAO."""
+        """Initialize the import group DAO.
+
+        Args:
+            session: Active SQLAlchemy session used for persistence operations.
+        """
 
         super().__init__(session, ImportGroup)
 
     def get_by_storage_dir(self, storage_dir: str) -> ImportGroup | None:
-        """Fetch an import group by storage directory."""
+        """Fetch an import group by storage directory.
+
+        Args:
+            storage_dir: Managed directory path for a single import group.
+
+        Returns:
+            ImportGroup | None: The matching import group row, if present.
+        """
 
         return self.find_one(storage_dir=storage_dir)
 
@@ -178,7 +204,11 @@ class ImageAssetDAO(BaseDAO[ImageAsset]):
     """DAO for image asset rows."""
 
     def __init__(self, session: Session) -> None:
-        """Initialize the image asset DAO."""
+        """Initialize the image asset DAO.
+
+        Args:
+            session: Active SQLAlchemy session used for persistence operations.
+        """
 
         super().__init__(session, ImageAsset)
 
@@ -187,7 +217,11 @@ class UserCollectionDAO(BaseDAO[UserCollection]):
     """DAO for user collection rows."""
 
     def __init__(self, session: Session) -> None:
-        """Initialize the user collection DAO."""
+        """Initialize the user collection DAO.
+
+        Args:
+            session: Active SQLAlchemy session used for persistence operations.
+        """
 
         super().__init__(session, UserCollection)
 
@@ -196,12 +230,24 @@ class UserCollectionToImageAssetDAO(BaseDAO[UserCollectionToImageAsset]):
     """DAO for user collection to image asset link rows."""
 
     def __init__(self, session: Session) -> None:
-        """Initialize the collection link DAO."""
+        """Initialize the collection link DAO.
+
+        Args:
+            session: Active SQLAlchemy session used for persistence operations.
+        """
 
         super().__init__(session, UserCollectionToImageAsset)
 
     def get_link(self, user_collection_id: int, image_asset_id: int) -> UserCollectionToImageAsset | None:
-        """Fetch a collection-asset link by composite key."""
+        """Fetch a collection-asset link by composite key.
+
+        Args:
+            user_collection_id: User collection identifier.
+            image_asset_id: Image asset identifier.
+
+        Returns:
+            UserCollectionToImageAsset | None: The matching link row, if present.
+        """
 
         return self.get((user_collection_id, image_asset_id))
 
@@ -210,12 +256,23 @@ class TagDAO(BaseDAO[Tag]):
     """DAO for tag rows."""
 
     def __init__(self, session: Session) -> None:
-        """Initialize the tag DAO."""
+        """Initialize the tag DAO.
+
+        Args:
+            session: Active SQLAlchemy session used for persistence operations.
+        """
 
         super().__init__(session, Tag)
 
     def get_by_name(self, name: str) -> Tag | None:
-        """Fetch a tag by name."""
+        """Fetch a tag by name.
+
+        Args:
+            name: Case-insensitive tag name.
+
+        Returns:
+            Tag | None: The matching tag row, if present.
+        """
 
         return self.find_one(name=name)
 
@@ -224,12 +281,24 @@ class TagToImageAssetDAO(BaseDAO[TagToImageAsset]):
     """DAO for tag to image asset link rows."""
 
     def __init__(self, session: Session) -> None:
-        """Initialize the tag link DAO."""
+        """Initialize the tag link DAO.
+
+        Args:
+            session: Active SQLAlchemy session used for persistence operations.
+        """
 
         super().__init__(session, TagToImageAsset)
 
     def get_link(self, tag_id: int, image_asset_id: int) -> TagToImageAsset | None:
-        """Fetch a tag-asset link by composite key."""
+        """Fetch a tag-asset link by composite key.
+
+        Args:
+            tag_id: Tag identifier.
+            image_asset_id: Image asset identifier.
+
+        Returns:
+            TagToImageAsset | None: The matching link row, if present.
+        """
 
         return self.get((tag_id, image_asset_id))
 
